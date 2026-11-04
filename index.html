@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>捏捏冰｜黏土冰淇淋機</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Noto+Sans+TC:wght@500;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFE45E;--ink:#1B1030;--pink:#FF5FA2;--mint:#3DDBB0;--blue:#3B5BFF;--card:#fff;--on-accent:#1B1030;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2A1658;--ink:#FFF6D6;--card:#3A2278;--on-accent:#1B1030}}
+:root[data-theme="dark"]{--bg:#2A1658;--ink:#FFF6D6;--card:#3A2278;--on-accent:#1B1030}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans TC",system-ui,sans-serif;font-weight:500;line-height:1.7;overflow-x:hidden}
+h1,h2,h3,.logo{font-family:"Bagel Fat One","Noto Sans TC",sans-serif;font-weight:900;line-height:1.15;margin:0}
+a{color:inherit}
+:focus-visible{outline:4px solid var(--blue);outline-offset:3px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:4px solid var(--ink)}
+.bar{max-width:1100px;margin:auto;padding:12px 20px;display:flex;align-items:center;gap:20px}
+.logo{font-size:1.6rem;text-decoration:none;margin-right:auto}
+nav{display:flex;gap:18px}
+nav a{font-weight:900;text-decoration:none}
+nav a:hover{color:var(--pink)}
+.btn{display:inline-block;background:var(--pink);color:var(--on-accent);border:4px solid var(--ink);border-radius:999px;padding:10px 26px;font:900 1.05rem "Noto Sans TC",sans-serif;text-decoration:none;box-shadow:6px 6px 0 var(--ink);cursor:pointer;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translate(3px,3px);box-shadow:3px 3px 0 var(--ink)}
+.btn.sm{padding:6px 18px;box-shadow:4px 4px 0 var(--ink)}
+.hero{max-width:1240px;margin:auto;padding:40px 20px 70px;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.3fr);gap:24px;align-items:center}
+.hero h1{font-size:clamp(2.4rem,4.6vw,4rem)}
+.hero p{font-size:1.1rem;max-width:24em;margin:16px 0 24px}
+.stage{position:relative;height:clamp(480px,50vw,680px);opacity:var(--o,1);transform:translateY(calc(var(--y,0) * 1px)) scale(var(--s,1));will-change:opacity,transform}
+.fl{position:absolute;animation:bob 4s ease-in-out infinite;cursor:pointer;filter:drop-shadow(5px 6px 0 var(--ink))}
+.fl svg{display:block;width:100%;height:auto}
+.s1{width:210px;left:25%;top:6%;animation-delay:0s}
+.s2{width:120px;left:2%;top:52%;animation-delay:-1.3s}
+.s3{width:100px;right:2%;top:12%;animation-delay:-2.2s}
+.s4{width:90px;right:10%;bottom:2%;animation-delay:-3s}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-22px) rotate(5deg)}}
+.stage canvas{filter:drop-shadow(8px 8px 0 var(--ink));position:absolute;inset:0 0 58px 0;width:100%;height:calc(100% - 58px);display:block;cursor:grab;touch-action:pan-y}.stage canvas:active{cursor:grabbing}.fb{font-size:8rem;text-align:center;line-height:420px}.hint{z-index:1;pointer-events:none;position:absolute;left:50%;transform:translateX(-50%);bottom:4px;white-space:nowrap;background:var(--card);color:var(--ink);border:3px solid var(--ink);border-radius:999px;padding:3px 16px;box-shadow:4px 4px 0 var(--ink);font-weight:900;font-size:.9rem}
+section{padding:80px 20px;border-top:4px solid var(--ink)}
+.wrap{max-width:1100px;margin:auto}
+.wrap>h2{font-size:clamp(2rem,5vw,3.2rem);margin-bottom:36px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.card{background:var(--card);border:4px solid var(--ink);border-radius:28px;padding:28px;box-shadow:8px 8px 0 var(--ink)}
+.card:nth-child(1){background:var(--mint);color:#1B1030}
+.card:nth-child(2){background:var(--pink);color:#1B1030}
+.card:nth-child(3){background:var(--blue);color:#fff}
+.card .e{font-size:3rem;line-height:1}
+.card h3{font-size:1.6rem;margin:12px 0 8px}
+.card p{margin:0}
+.cta{background:var(--blue);color:#fff;text-align:center}
+.cta h2{font-size:clamp(2rem,6vw,3.6rem);margin-bottom:14px}
+.cta p{margin:0 0 28px;font-size:1.15rem}
+.cta .btn{background:var(--bg);color:#1B1030;border-color:#1B1030}
+footer{background:var(--ink);color:var(--bg);padding:36px 20px;text-align:center;font-weight:900}
+footer small{display:block;font-weight:500;margin-top:6px;opacity:.8}
+#products{padding-left:0;padding-right:0}
+#products .wrap{padding:0 20px}
+.lead{margin:-20px 0 28px;font-size:1.1rem}
+.gal{--pad:max(20px,calc((100vw - 1100px)/2));display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:var(--pad);padding:6px var(--pad) 30px;scrollbar-width:none}
+.gal::-webkit-scrollbar{display:none}
+.gc{flex:0 0 min(300px,78vw);scroll-snap-align:start;border:4px solid var(--ink);border-radius:28px;padding:20px;box-shadow:8px 8px 0 var(--ink);background:var(--card);color:var(--ink)}
+.pic{background:#FFE45E;border:4px solid var(--ink);border-radius:20px;padding:16px 0 10px;margin-bottom:16px}
+.gc svg{display:block;width:62%;margin:0 auto;filter:drop-shadow(4px 5px 0 #1B1030)}
+.gc h3{font-size:1.5rem;margin-bottom:6px}
+.gc p{margin:0}
+.gctl{display:flex;gap:14px}
+@media (max-width:760px){.hero{grid-template-columns:1fr;padding-top:36px}.stage{height:min(calc(100vw + 58px),540px)}.hero h1{font-size:clamp(2.2rem,9vw,3rem)}.grid{grid-template-columns:1fr}nav{display:none}}
+@media (prefers-reduced-motion:reduce){.fl{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+ <defs>
+  <symbol id="scoop" viewBox="0 0 100 100"><path d="M10 52a40 40 0 0 1 80 0v6c0 6-6 8-10 4-4 8-12 8-15 0-4 8-12 8-15 0-4 8-12 8-15 0-4 4-10 2-10-4z" fill="currentColor" stroke="#1B1030" stroke-width="4" stroke-linejoin="round"/><ellipse cx="34" cy="28" rx="9" ry="5" fill="#fff" opacity=".55" transform="rotate(-25 34 28)"/></symbol>
+  <symbol id="cone" viewBox="0 0 100 130"><path d="M12 6h76L50 124z" fill="#F2A65A" stroke="#1B1030" stroke-width="4" stroke-linejoin="round"/><path d="M28 6l38 60M50 6l14 22M72 6L34 66M80 28L56 76" stroke="#1B1030" stroke-width="3" fill="none" opacity=".55"/></symbol>
+ </defs>
+</svg>
+
+<header>
+ <div class="bar">
+  <a class="logo" href="#top">捏捏冰</a>
+  <nav aria-label="主選單"><a href="#products">商品</a><a href="#features">特色</a><a href="#buy">立即捏</a></nav>
+  <a class="btn sm" href="#buy">我要買</a>
+ </div>
+</header>
+
+<main id="top">
+ <div class="hero">
+  <div>
+   <h1>把黏土<br>捏成冰淇淋！</h1>
+   <p>捏捏冰是一台會“擠”出冰淇淋的黏土玩具機。轉一轉、壓一壓，考試週也能有一球療癒。</p>
+   <a class="btn" href="#buy">開始捏冰淇淋</a>
+  </div>
+  <div class="stage" id="stage3d" role="img" aria-label="可拖曳旋轉的 3D 黏土冰淇淋機台"><span class="hint">拖曳旋轉，點冰淇淋換口味</span></div>
+ </div>
+
+ <section id="products">
+  <div class="wrap">
+   <h2>認識捏捏冰口味</h2>
+   <p class="lead">往左滑，挑一球你喜歡的顏色。</p>
+  </div>
+  <div class="gal" role="region" aria-label="商品橫向圖庫" tabindex="0" id="gal">
+   <article class="gc"><div class="pic"><svg viewBox="0 0 100 100" style="color:#FF5FA2"><use href="#scoop" width="100" height="100"/></svg></div><h3>草莓粉粉</h3><p>最好捏的基本款，軟軟的粉紅色。</p></article>
+   <article class="gc"><div class="pic"><svg viewBox="0 0 100 100" style="color:#3DDBB0"><use href="#scoop" width="100" height="100"/></svg></div><h3>薄荷清清</h3><p>清爽的薄荷綠，最適合疊在粉紅色上面。</p></article>
+   <article class="gc"><div class="pic"><svg viewBox="0 0 100 100" style="color:#3B5BFF"><use href="#scoop" width="100" height="100"/></svg></div><h3>藍莓汪汪</h3><p>深一點的藍色，桌面上最顯眼的一球。</p></article>
+   <article class="gc"><div class="pic"><svg viewBox="0 0 100 100" style="color:#FFFFFF"><use href="#scoop" width="100" height="100"/></svg></div><h3>牛奶白白</h3><p>乾淨的白色，拿來調淡其他顏色剛剛好。</p></article>
+   <article class="gc"><div class="pic"><svg viewBox="0 0 100 100" style="color:#1B1030"><use href="#scoop" width="100" height="100"/></svg></div><h3>黑芝麻酷酷</h3><p>最深的一球，疊上去立刻有對比。</p></article>
+  </div>
+  <div class="wrap gctl"><button class="btn sm" id="prev" type="button">上一個</button><button class="btn sm" id="next" type="button">下一個</button></div>
+ </section>
+
+ <section id="features">
+  <div class="wrap">
+   <h2>為什麼大學生都在捏？</h2>
+   <div class="grid">
+    <div class="card"><div class="e">🍦</div><h3>黏土變冰淇淋</h3><p>把黏土放進機器，壓一下就擠出一圈圈的冰淇淋，還能疊成三層。</p></div>
+    <div class="card"><div class="e">🌈</div><h3>色彩繽紛</h3><p>粉紅、薄荷、藍莓等多種顏色，自由混色，桌面瞬間變甜點店。</p></div>
+    <div class="card"><div class="e">🫶</div><h3>捏著捏著就放鬆</h3><p>報告寫不出來時，手上捏一捏，壓力也跟著被擠出去。</p></div>
+   </div>
+  </div>
+ </section>
+
+ <section class="cta" id="buy">
+  <div class="wrap">
+   <h2>今天，給自己一球冰淇淋</h2>
+   <p>送給室友、送給自己，都適合。</p>
+   <a class="btn" href="#top">立即訂購</a>
+  </div>
+ </section>
+</main>
+
+<footer>捏捏冰 Clay Ice Cream Maker<small>© 2026 課堂作業示範頁面</small></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+var box=document.getElementById("stage3d"),reduce=matchMedia("(prefers-reduced-motion:reduce)").matches,R;
+function fb(){box.insertAdjacentHTML("afterbegin",'<div class="fb">🍦</div>');}
+if(!window.THREE){fb();return;}
+try{R=new THREE.WebGLRenderer({antialias:true,alpha:true});}catch(e){fb();return;}
+R.setPixelRatio(Math.min(devicePixelRatio||1,2));
+box.insertBefore(R.domElement,box.firstChild);
+var S=new THREE.Scene(),C=new THREE.PerspectiveCamera(32,1,.1,100);
+S.add(new THREE.HemisphereLight(0xffffff,0xb9a8ff,.7));
+var L=new THREE.DirectionalLight(0xffffff,.65);L.position.set(3,6,5);S.add(L);
+var ink=new THREE.MeshBasicMaterial({color:0x1B1030,side:THREE.BackSide});
+function mk(par,geo,col,x,y,z,o){var m=new THREE.Mesh(geo,new THREE.MeshStandardMaterial({color:col,roughness:.65}));m.position.set(x,y,z);var ol=new THREE.Mesh(geo,ink);ol.scale.setScalar(o||1.06);m.add(ol);par.add(m);return m;}
+var G=new THREE.Group(),M=new THREE.Group();M.position.y=-3.45;G.add(M);G.rotation.order="YXZ";S.add(G);
+var CY=THREE.CylinderGeometry,SP=THREE.SphereGeometry,TO=THREE.TorusGeometry,BX=THREE.BoxGeometry,CN=THREE.ConeGeometry,T=.09;
+function mat(c){return new THREE.MeshToonMaterial({color:c});}
+function add(p,g,og,c,x,y,z){var m=new THREE.Mesh(g,mat(c));m.position.set(x,y,z);if(og)m.add(new THREE.Mesh(og,ink));p.add(m);return m;}
+function bx(p,w,h,d,c,x,y,z){return add(p,new BX(w,h,d),new BX(w+2*T,h+2*T,d+2*T),c,x,y,z);}
+function cy(p,r,h,c,x,y,z){return add(p,new CY(r,r,h,40),new CY(r+T,r+T,h+2*T,40),c,x,y,z);}
+function sp(p,r,c,x,y,z){return add(p,new SP(r,24,16),new SP(r+T,24,16),c,x,y,z);}
+function tor(p,R,r,c,y){var m=add(p,new TO(R,r,14,36),new TO(R,r+T,14,36),c,0,y,0);m.rotation.x=Math.PI/2;return m;}
+var TEAL=0x4DB39B,CREAM=0xE8DDBA,PUR=0xD9648F,SKY=0x4A5FC4,GRAY=0xB4BAC8,YEL=0xE3C95C,hs=[],sw=[];
+/* base plate + embossed holes + ramp */
+bx(M,6.2,.45,3.2,TEAL,0,.225,0);
+[[-2.3,.8],[-1.4,1.2],[-.5,1.15],[.9,1.2],[1.7,.8],[-1.7,.4],[1.1,.3]].forEach(function(h){var d=new THREE.Mesh(new CY(.22,.22,.03,24),mat(0x35907B));d.position.set(h[0],.46,h[1]);M.add(d);});
+bx(M,1.3,.8,.9,TEAL,2.5,.85,-.2);
+/* column + roof + chute */
+bx(M,1.5,5.85,1.1,CREAM,0,3.375,-.35);
+var roof=bx(M,1.8,.3,1.5,TEAL,.05,6.45,-.2);roof.rotation.z=-.1;
+cy(M,.28,.9,GRAY,.12,5.75,.05);
+/* purple housing with opening + clear tube */
+var cx=.1;
+hs.push(bx(M,.65,1.8,1.3,PUR,cx-.775,4.3,-.2),bx(M,.65,1.8,1.3,PUR,cx+.775,4.3,-.2),bx(M,.9,1.8,.4,PUR,cx,4.3,-.5),bx(M,.9,.35,1.3,PUR,cx,3.7,-.2));
+var tube=new THREE.Mesh(new CY(.42,.42,1.8,32),new THREE.MeshStandardMaterial({color:0xcfe9ff,transparent:true,opacity:.35,roughness:.2}));tube.position.set(cx,4.75,-.1);M.add(tube);
+cy(M,.12,1.7,GRAY,cx,4.75,-.1);
+[4.8,4.4,3.95].forEach(function(y){var b=cy(M,.14,.08,YEL,-.78,y,.47);b.rotation.x=Math.PI/2;});
+/* nozzle, die, cone, swirl */
+cy(M,.2,.5,GRAY,cx,3.15,.2);
+cy(M,.6,.06,PUR,cx,.48,.2);
+var cone=add(M,new CN(.5,1.1,32),new CN(.5+T,1.1+2*T,32),0xE3C95C,cx,1.05,.2);cone.rotation.x=Math.PI;
+[[.55,1.72,0xF0ECE2],[.45,2.05,0x4DB39B],[.33,2.38,0xF0ECE2],[.2,2.7,0x4DB39B]].forEach(function(r){var t=tor(M,r[0],.2,r[2],r[1]);t.position.set(cx,r[1],.2);sw.push(t);});
+/* blue box + crank */
+bx(M,1.9,1.2,1.3,SKY,2.2,3.1,-.1);
+cy(M,.3,.45,SKY,2.2,3.95,-.1);
+var cr=new THREE.Group();cr.position.set(2.2,4.3,-.1);M.add(cr);
+cy(cr,.1,.5,GRAY,0,0,0);
+var arm=bx(cr,.8,.1,.12,GRAY,.4,.22,0);
+cy(cr,.09,.4,GRAY,.8,.3,0);
+[[-.35,.2],[.25,.2]].forEach(function(b,i){var k=bx(M,.2,.2,.05,0x2F3F96,1.7+i*.01,3.4-i*.5,.57);k.position.x=1.9+b[0]*0;});
+/* blue ring tray */
+bx(M,.7,.1,.3,SKY,-.9,3.0,0);
+var ring=cy(M,.7,.1,SKY,-1.6,3.0,.35);ring.scale.z=.55;
+/* accessories */
+cy(M,.08,.5,0xD9648F,-2.4,.7,1.0);
+var bowl=sp(M,.45,0xD9648F,-2.4,1.15,1.0);bowl.scale.y=.6;
+sp(M,.2,0x4DB39B,1.6,.58,1.0);sp(M,.2,0x4A5FC4,.9,.58,1.15);sp(M,.2,0xD9648F,-1.0,.58,1.05);
+var bg=[[-4.1,2.6,-4,.8,0x4DB39B],[4.2,4.6,-3,.6,0xF0ECE2],[-3.9,-2.4,-2,.5,0xE3C95C],[4.0,-3,-5,.8,0x4A5FC4]].map(function(d){var m=sp(S,d[3],d[4],d[0],d[1],d[2]);m.userData.y=d[1];return m;});
+function fit(){var w=R.domElement.clientWidth,h=R.domElement.clientHeight;if(!w||!h)return;R.setSize(w,h,false);C.aspect=w/h;C.updateProjectionMatrix();var t=Math.tan(C.fov*Math.PI/360);var d=Math.max(7.7/2/t,7.4/2/(t*C.aspect));C.position.set(0,.3,d);C.lookAt(0,0,0);}
+new ResizeObserver(fit).observe(box);fit();
+var rest=-.55,t0=null,dr=0,dp=0,down=false,px=0,py=0,mv=0,vis=false,raf=0,ci=0;
+var pal=[0x4DB39B,0xD9648F,0x4A5FC4,0xE3C95C,0x3A2F4F],rc=new THREE.Raycaster(),v2=new THREE.Vector2();
+function ease(x){return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;}
+function out(x){return 1-Math.pow(1-x,3);}
+function frame(now){
+ if(!vis){raf=0;return;}raf=requestAnimationFrame(frame);
+ if(t0===null)t0=now;var t=(now-t0)/1000;
+ var a=reduce?1:Math.min(1,t/1.6),b=reduce?1:Math.min(1,Math.max(0,(t-1)/2)),ea=ease(a),eb=out(b);
+ G.position.set((1-ea)*6,(1-ea)*-2+(reduce?0:Math.sin(t*1.5)*.05*ea),(1-ea)*-13);
+ if(!down){dr*=.94;dp*=.94;}
+ G.rotation.set(.1+dp,-2.9+(rest+2.9)*eb+(reduce?0:Math.sin(t*.8)*.05*eb)+dr,0);
+ if(!reduce)cr.rotation.y+=.03;
+ bg.forEach(function(m,i){m.position.y=m.userData.y+(reduce?0:Math.sin(t*1.2+i*1.7)*.18);m.rotation.y+=.01;});
+ R.render(S,C);
+}
+new IntersectionObserver(function(e){vis=e[0].isIntersecting;if(vis&&!raf)raf=requestAnimationFrame(frame);},{threshold:.01}).observe(box);
+var cv=R.domElement;
+cv.addEventListener("pointerdown",function(e){down=true;mv=0;px=e.clientX;py=e.clientY;cv.setPointerCapture(e.pointerId);});
+cv.addEventListener("pointermove",function(e){if(!down)return;var dx=e.clientX-px,dy=e.clientY-py;px=e.clientX;py=e.clientY;dr+=dx*.012;dp=Math.max(-.35,Math.min(.35,dp+dy*.006));mv+=Math.abs(dx)+Math.abs(dy);});
+cv.addEventListener("pointerup",function(e){if(!down)return;down=false;if(mv<6){var r=cv.getBoundingClientRect();v2.set((e.clientX-r.left)/r.width*2-1,-((e.clientY-r.top)/r.height*2-1));rc.setFromCamera(v2,C);if(rc.intersectObjects(sw.concat([cone]),true).length){ci=(ci+1)%pal.length;sw.forEach(function(m,i){m.material.color.setHex(i%2?pal[ci]:0xF0ECE2);});}}});
+cv.addEventListener("pointercancel",function(){down=false;});
+})();
+</script>
+<script>
+(function(){
+ var st=document.querySelector(".stage"),hero=document.querySelector(".hero"),reduce=matchMedia("(prefers-reduced-motion:reduce)").matches;
+ function fade(){var p=Math.min(1,Math.max(0,scrollY/(hero.offsetHeight*0.7)));st.style.setProperty("--o",1-p);st.style.setProperty("--y",-p*60);st.style.setProperty("--s",1-p*0.15);}
+ if(!reduce){addEventListener("scroll",fade,{passive:true});fade();}
+ var gal=document.getElementById("gal");
+ function go(d){gal.scrollBy({left:d*324,behavior:reduce?"auto":"smooth"});}
+ document.getElementById("prev").addEventListener("click",function(){go(-1);});
+ document.getElementById("next").addEventListener("click",function(){go(1);});
+ var cols=["#FF5FA2","#3DDBB0","#3B5BFF","#FFFFFF","#FF9F43","#B46CFF"];
+ document.querySelectorAll(".fl").forEach(function(el){
+  el.addEventListener("click",function(){
+   el.querySelectorAll(".sc").forEach(function(s,i){
+    var c=cols[Math.floor(Math.random()*cols.length)];
+    (s.closest("svg")).style.color=c;
+    s.style.color=c;
+   });
+  });
+ });
+})();
+</script>
+</body>
+</html>
